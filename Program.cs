@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using Microsoft.VisualBasic;
-var x = ConvertNumberToWords2(12504.25, "ريال", "فلس");
+
+var x = ConvertNumberToWords2(102504.25, "ريال", "فلس");
 Console.WriteLine(x);
 string ConvertNumberToWords2(double Number, string MainCurrency, string SubCurrency)
 {
@@ -68,91 +68,91 @@ string ConvertNumberToWords2(double Number, string MainCurrency, string SubCurre
     Array3[7] = "سبعة";
     Array3[8] = "ثمانية";
     Array3[9] = "تسعة";
-    GetNumber = Strings.Format(Number, "000000000000.00");
+    GetNumber =  Number.ToString("000000000000.00");
     I = 0;
     while (I < 15)
     {
         if (I < 12)
         {
-            MyNumber = Strings.Mid(GetNumber, I + 1, 3);
+            MyNumber = SubString(GetNumber, I, 3);
         }
         else
         {
-            MyNumber = "0" + Strings.Mid(GetNumber, I + 2, 2);
+            MyNumber = "0" + SubString(GetNumber, I + 1, 2);
         }
-        if (Convert.ToDouble(Strings.Mid(MyNumber, 1, 3)) > 0d)
+        if (Convert.ToDouble(SubString(MyNumber, 0, 3)) > 0d)
         {
-            ReadNumber = Strings.Mid(MyNumber, 1, 1);
+            ReadNumber = SubString(MyNumber, 0, 1);
             My100 = Array1[Convert.ToInt32(ReadNumber)];
-            ReadNumber = Strings.Mid(MyNumber, 3, 1);
+            ReadNumber = SubString(MyNumber, 2, 1);
             My1 = Array3[Convert.ToInt32(ReadNumber)];
-            ReadNumber = Strings.Mid(MyNumber, 2, 1);
+            ReadNumber = SubString(MyNumber, 1, 1);
             My10 = Array2[Convert.ToInt32(ReadNumber)];
-            if (Convert.ToDouble(Strings.Mid(MyNumber, 2, 2)) == 11d)
+            if (Convert.ToDouble(SubString(MyNumber, 1, 2)) == 11d)
                 My11 = "إحدى عشر";
-            if (Convert.ToDouble(Strings.Mid(MyNumber, 2, 2)) == 12d)
+            if (Convert.ToDouble(SubString(MyNumber, 1, 2)) == 12d)
                 My12 = "إثنى عشر";
-            if (Convert.ToDouble(Strings.Mid(MyNumber, 2, 2)) == 10d)
+            if (Convert.ToDouble(SubString(MyNumber, 1, 2)) == 10d)
                 My10 = "عشرة";
-            if (Convert.ToDouble(Strings.Mid(MyNumber, 1, 1)) > 0d & Convert.ToDouble(Strings.Mid(MyNumber, 2, 2)) > 0d)
+            if (Convert.ToDouble(SubString(MyNumber, 0, 1)) > 0d & Convert.ToDouble(SubString(MyNumber, 1, 2)) > 0d)
                 My100 = My100 + MyAnd;
-            if (Convert.ToDouble(Strings.Mid(MyNumber, 3, 1)) > 0d & Convert.ToDouble(Strings.Mid(MyNumber, 2, 1)) > 1d)
+            if (Convert.ToDouble(SubString(MyNumber, 2, 1)) > 0d & Convert.ToDouble(SubString(MyNumber, 1, 1)) > 1d)
                 My1 = My1 + MyAnd;
             GetText = My100 + My1 + My10;
-            if (Convert.ToDouble(Strings.Mid(MyNumber, 3, 1)) == 1d & Convert.ToDouble(Strings.Mid(MyNumber, 2, 1)) == 1d)
+            if (Convert.ToDouble(SubString(MyNumber, 2, 1)) == 1d & Convert.ToDouble(SubString(MyNumber, 1, 1)) == 1d)
             {
                 GetText = My100 + My11;
-                if (Convert.ToDouble(Strings.Mid(MyNumber, 1, 1)) == 0d)
+                if (Convert.ToDouble(SubString(MyNumber, 0, 1)) == 0d)
                     GetText = My11;
             }
-            if (Convert.ToDouble(Strings.Mid(MyNumber, 3, 1)) == 2d & Convert.ToDouble(Strings.Mid(MyNumber, 2, 1)) == 1d)
+            if (Convert.ToDouble(SubString(MyNumber, 2, 1)) == 2d & Convert.ToDouble(SubString(MyNumber, 1, 1)) == 1d)
             {
                 GetText = My100 + My12;
-                if (Convert.ToDouble(Strings.Mid(MyNumber, 1, 1)) == 0d)
+                if (Convert.ToDouble(SubString(MyNumber, 0, 1)) == 0d)
                     GetText = My12;
             }
             if (I == 0 & !string.IsNullOrEmpty(GetText))
             {
-                if (Convert.ToDouble(Strings.Mid(MyNumber, 1, 3)) > 10d)
+                if (Convert.ToDouble(SubString(MyNumber, 0, 3)) > 10d)
                 {
                     Billion = GetText + " مليار";
                 }
                 else
                 {
                     Billion = GetText + " مليارات";
-                    if (Convert.ToDouble(Strings.Mid(MyNumber, 1, 3)) == 2d)
+                    if (Convert.ToDouble(SubString(MyNumber, 0, 3)) == 2d)
                         Billion = " مليار";
-                    if (Convert.ToDouble(Strings.Mid(MyNumber, 1, 3)) == 2d)
+                    if (Convert.ToDouble(SubString(MyNumber, 0, 3)) == 2d)
                         Billion = " ملياران";
                 }
             }
             if (I == 3 & !string.IsNullOrEmpty(GetText))
             {
-                if (Convert.ToDouble(Strings.Mid(MyNumber, 1, 3)) > 10d)
+                if (Convert.ToDouble(SubString(MyNumber, 0, 3)) > 10d)
                 {
                     Million = GetText + " مليون";
                 }
                 else
                 {
                     Million = GetText + " ملايين";
-                    if (Convert.ToDouble(Strings.Mid(MyNumber, 1, 3)) == 1d)
+                    if (Convert.ToDouble(SubString(MyNumber, 0, 3)) == 1d)
                         Million = " مليون";
-                    if (Convert.ToDouble(Strings.Mid(MyNumber, 1, 3)) == 2d)
+                    if (Convert.ToDouble(SubString(MyNumber, 0, 3)) == 2d)
                         Million = " مليونان";
                 }
             }
             if (I == 6 & !string.IsNullOrEmpty(GetText))
             {
-                if (Convert.ToDouble(Strings.Mid(MyNumber, 1, 3)) > 10d)
+                if (Convert.ToDouble(SubString(MyNumber, 0, 3)) > 10d)
                 {
                     Thousand = GetText + " ألف";
                 }
                 else
                 {
                     Thousand = GetText + " ألاف";
-                    if (Convert.ToDouble(Strings.Mid(MyNumber, 3, 1)) == 1d)
+                    if (Convert.ToDouble(SubString(MyNumber, 2, 1)) == 1d)
                         Thousand = " ألف";
-                    if (Convert.ToDouble(Strings.Mid(MyNumber, 3, 1)) == 2d)
+                    if (Convert.ToDouble(SubString(MyNumber, 2, 1)) == 2d)
                         Thousand = " ألفان";
                 }
             }
@@ -195,4 +195,9 @@ string ConvertNumberToWords2(double Number, string MainCurrency, string SubCurre
     }
 
     return ConvertNumberToWords2Ret;
+}
+
+string SubString(string value, int start, int length)
+{
+    return value.Substring(start, length);
 }
